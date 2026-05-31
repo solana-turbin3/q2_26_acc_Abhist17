@@ -1,0 +1,735 @@
+export type SolanaGptOracle= {
+    "address": "LLMrieZMpbJFwN52WgmBNMxYojrpRVYXdC1RCweEbab",
+    "metadata": {
+        "name": "solana_gpt_oracle",
+        "version": "0.1.1",
+        "spec": "0.1.0",
+        "description": "Solana LLM Oracle"
+    },
+    "instructions": [
+        {
+            "name": "callback_from_llm",
+            "discriminator": [
+                64,
+                202,
+                209,
+                39,
+                156,
+                18,
+                216,
+                170
+            ],
+            "accounts": [
+                {
+                    "name": "payer",
+                    "writable": true,
+                    "signer": true,
+                    "address": "A1ooMmN1fz6LbEFrjh6GukFS2ZeRYFzdyFjeafyyS7Ca"
+                },
+                {
+                    "name": "identity",
+                    "pda": {
+                        "seeds": [
+                            {
+                                "kind": "const",
+                                "value": [
+                                    105,
+                                    100,
+                                    101,
+                                    110,
+                                    116,
+                                    105,
+                                    116,
+                                    121
+                                ]
+                            }
+                        ]
+                    }
+                },
+                {
+                    "name": "interaction",
+                    "writable": true
+                },
+                {
+                    "name": "program"
+                }
+            ],
+            "args": [
+                {
+                    "name": "response",
+                    "type": "string"
+                }
+            ]
+        },
+        {
+            "name": "callback_from_oracle",
+            "discriminator": [
+                8,
+                43,
+                33,
+                15,
+                26,
+                22,
+                255,
+                206
+            ],
+            "accounts": [
+                {
+                    "name": "identity",
+                    "pda": {
+                        "seeds": [
+                            {
+                                "kind": "const",
+                                "value": [
+                                    105,
+                                    100,
+                                    101,
+                                    110,
+                                    116,
+                                    105,
+                                    116,
+                                    121
+                                ]
+                            }
+                        ]
+                    }
+                }
+            ],
+            "args": [
+                {
+                    "name": "response",
+                    "type": "string"
+                }
+            ]
+        },
+        {
+            "name": "create_llm_context",
+            "discriminator": [
+                224,
+                109,
+                4,
+                173,
+                191,
+                25,
+                42,
+                162
+            ],
+            "accounts": [
+                {
+                    "name": "payer",
+                    "writable": true,
+                    "signer": true
+                },
+                {
+                    "name": "counter",
+                    "writable": true,
+                    "pda": {
+                        "seeds": [
+                            {
+                                "kind": "const",
+                                "value": [
+                                    99,
+                                    111,
+                                    117,
+                                    110,
+                                    116,
+                                    101,
+                                    114
+                                ]
+                            }
+                        ]
+                    }
+                },
+                {
+                    "name": "context_account",
+                    "writable": true,
+                    "pda": {
+                        "seeds": [
+                            {
+                                "kind": "const",
+                                "value": [
+                                    116,
+                                    101,
+                                    115,
+                                    116,
+                                    45,
+                                    99,
+                                    111,
+                                    110,
+                                    116,
+                                    101,
+                                    120,
+                                    116
+                                ]
+                            },
+                            {
+                                "kind": "account",
+                                "path": "counter.count",
+                                "account": "Counter"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "name": "system_program",
+                    "address": "11111111111111111111111111111111"
+                }
+            ],
+            "args": [
+                {
+                    "name": "text",
+                    "type": "string"
+                }
+            ]
+        },
+        {
+            "name": "delegate_interaction",
+            "discriminator": [
+                214,
+                51,
+                72,
+                64,
+                235,
+                222,
+                82,
+                123
+            ],
+            "accounts": [
+                {
+                    "name": "payer",
+                    "writable": true,
+                    "signer": true
+                },
+                {
+                    "name": "buffer_interaction",
+                    "writable": true,
+                    "pda": {
+                        "seeds": [
+                            {
+                                "kind": "const",
+                                "value": [
+                                    98,
+                                    117,
+                                    102,
+                                    102,
+                                    101,
+                                    114
+                                ]
+                            },
+                            {
+                                "kind": "account",
+                                "path": "interaction"
+                            }
+                        ],
+                        "program": {
+                            "kind": "const",
+                            "value": [
+                                4,
+                                243,
+                                236,
+                                227,
+                                186,
+                                229,
+                                243,
+                                111,
+                                177,
+                                44,
+                                201,
+                                138,
+                                255,
+                                99,
+                                28,
+                                21,
+                                0,
+                                195,
+                                193,
+                                234,
+                                92,
+                                53,
+                                20,
+                                85,
+                                6,
+                                11,
+                                199,
+                                130,
+                                41,
+                                130,
+                                92,
+                                60
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "delegation_record_interaction",
+                    "writable": true,
+                    "pda": {
+                        "seeds": [
+                            {
+                                "kind": "const",
+                                "value": [
+                                    100,
+                                    101,
+                                    108,
+                                    101,
+                                    103,
+                                    97,
+                                    116,
+                                    105,
+                                    111,
+                                    110
+                                ]
+                            },
+                            {
+                                "kind": "account",
+                                "path": "interaction"
+                            }
+                        ],
+                        "program": {
+                            "kind": "account",
+                            "path": "delegation_program"
+                        }
+                    }
+                },
+                {
+                    "name": "delegation_metadata_interaction",
+                    "writable": true,
+                    "pda": {
+                        "seeds": [
+                            {
+                                "kind": "const",
+                                "value": [
+                                    100,
+                                    101,
+                                    108,
+                                    101,
+                                    103,
+                                    97,
+                                    116,
+                                    105,
+                                    111,
+                                    110,
+                                    45,
+                                    109,
+                                    101,
+                                    116,
+                                    97,
+                                    100,
+                                    97,
+                                    116,
+                                    97
+                                ]
+                            },
+                            {
+                                "kind": "account",
+                                "path": "interaction"
+                            }
+                        ],
+                        "program": {
+                            "kind": "account",
+                            "path": "delegation_program"
+                        }
+                    }
+                },
+                {
+                    "name": "interaction",
+                    "writable": true,
+                    "pda": {
+                        "seeds": [
+                            {
+                                "kind": "const",
+                                "value": [
+                                    105,
+                                    110,
+                                    116,
+                                    101,
+                                    114,
+                                    97,
+                                    99,
+                                    116,
+                                    105,
+                                    111,
+                                    110
+                                ]
+                            },
+                            {
+                                "kind": "account",
+                                "path": "payer"
+                            },
+                            {
+                                "kind": "account",
+                                "path": "context_account"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "name": "context_account"
+                },
+                {
+                    "name": "owner_program",
+                    "address": "LLMrieZMpbJFwN52WgmBNMxYojrpRVYXdC1RCweEbab"
+                },
+                {
+                    "name": "delegation_program",
+                    "address": "DELeGGvXpWV2fqJUhqcF5ZSYMS4JTLjteaAMARRSaeSh"
+                },
+                {
+                    "name": "system_program",
+                    "address": "11111111111111111111111111111111"
+                }
+            ],
+            "args": []
+        },
+        {
+            "name": "initialize",
+            "discriminator": [
+                175,
+                175,
+                109,
+                31,
+                13,
+                152,
+                155,
+                237
+            ],
+            "accounts": [
+                {
+                    "name": "payer",
+                    "writable": true,
+                    "signer": true
+                },
+                {
+                    "name": "identity",
+                    "writable": true,
+                    "pda": {
+                        "seeds": [
+                            {
+                                "kind": "const",
+                                "value": [
+                                    105,
+                                    100,
+                                    101,
+                                    110,
+                                    116,
+                                    105,
+                                    116,
+                                    121
+                                ]
+                            }
+                        ]
+                    }
+                },
+                {
+                    "name": "counter",
+                    "writable": true,
+                    "pda": {
+                        "seeds": [
+                            {
+                                "kind": "const",
+                                "value": [
+                                    99,
+                                    111,
+                                    117,
+                                    110,
+                                    116,
+                                    101,
+                                    114
+                                ]
+                            }
+                        ]
+                    }
+                },
+                {
+                    "name": "system_program",
+                    "address": "11111111111111111111111111111111"
+                }
+            ],
+            "args": []
+        },
+        {
+            "name": "interact_with_llm",
+            "discriminator": [
+                2,
+                54,
+                5,
+                16,
+                87,
+                123,
+                219,
+                132
+            ],
+            "accounts": [
+                {
+                    "name": "payer",
+                    "writable": true,
+                    "signer": true
+                },
+                {
+                    "name": "interaction",
+                    "writable": true,
+                    "pda": {
+                        "seeds": [
+                            {
+                                "kind": "const",
+                                "value": [
+                                    105,
+                                    110,
+                                    116,
+                                    101,
+                                    114,
+                                    97,
+                                    99,
+                                    116,
+                                    105,
+                                    111,
+                                    110
+                                ]
+                            },
+                            {
+                                "kind": "account",
+                                "path": "payer"
+                            },
+                            {
+                                "kind": "account",
+                                "path": "context_account"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "name": "context_account"
+                },
+                {
+                    "name": "system_program",
+                    "address": "11111111111111111111111111111111"
+                }
+            ],
+            "args": [
+                {
+                    "name": "text",
+                    "type": "string"
+                },
+                {
+                    "name": "callback_program_id",
+                    "type": "pubkey"
+                },
+                {
+                    "name": "callback_discriminator",
+                    "type": {
+                        "array": [
+                            "u8",
+                            8
+                        ]
+                    }
+                },
+                {
+                    "name": "account_metas",
+                    "type": {
+                        "option": {
+                            "vec": {
+                                "defined": {
+                                    "name": "AccountMeta"
+                                }
+                            }
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "name": "process_undelegation",
+            "discriminator": [
+                196,
+                28,
+                41,
+                206,
+                48,
+                37,
+                51,
+                167
+            ],
+            "accounts": [
+                {
+                    "name": "base_account",
+                    "writable": true
+                },
+                {
+                    "name": "buffer"
+                },
+                {
+                    "name": "payer",
+                    "writable": true
+                },
+                {
+                    "name": "system_program"
+                }
+            ],
+            "args": [
+                {
+                    "name": "account_seeds",
+                    "type": {
+                        "vec": "bytes"
+                    }
+                }
+            ]
+        }
+    ],
+    "accounts": [
+        {
+            "name": "ContextAccount",
+            "discriminator": [
+                75,
+                176,
+                185,
+                173,
+                144,
+                35,
+                90,
+                109
+            ]
+        },
+        {
+            "name": "Counter",
+            "discriminator": [
+                255,
+                176,
+                4,
+                245,
+                188,
+                253,
+                124,
+                25
+            ]
+        },
+        {
+            "name": "Identity",
+            "discriminator": [
+                58,
+                132,
+                5,
+                12,
+                176,
+                164,
+                85,
+                112
+            ]
+        },
+        {
+            "name": "Interaction",
+            "discriminator": [
+                194,
+                124,
+                204,
+                14,
+                165,
+                190,
+                70,
+                130
+            ]
+        }
+    ],
+    "types": [
+        {
+            "name": "AccountMeta",
+            "type": {
+                "kind": "struct",
+                "fields": [
+                    {
+                        "name": "pubkey",
+                        "type": "pubkey"
+                    },
+                    {
+                        "name": "is_signer",
+                        "type": "bool"
+                    },
+                    {
+                        "name": "is_writable",
+                        "type": "bool"
+                    }
+                ]
+            }
+        },
+        {
+            "name": "ContextAccount",
+            "docs": [
+                "Accounts"
+            ],
+            "type": {
+                "kind": "struct",
+                "fields": [
+                    {
+                        "name": "text",
+                        "type": "string"
+                    }
+                ]
+            }
+        },
+        {
+            "name": "Counter",
+            "type": {
+                "kind": "struct",
+                "fields": [
+                    {
+                        "name": "count",
+                        "type": "u32"
+                    }
+                ]
+            }
+        },
+        {
+            "name": "Identity",
+            "type": {
+                "kind": "struct",
+                "fields": []
+            }
+        },
+        {
+            "name": "Interaction",
+            "type": {
+                "kind": "struct",
+                "fields": [
+                    {
+                        "name": "context",
+                        "type": "pubkey"
+                    },
+                    {
+                        "name": "user",
+                        "type": "pubkey"
+                    },
+                    {
+                        "name": "text",
+                        "type": "string"
+                    },
+                    {
+                        "name": "callback_program_id",
+                        "type": "pubkey"
+                    },
+                    {
+                        "name": "callback_discriminator",
+                        "type": {
+                            "array": [
+                                "u8",
+                                8
+                            ]
+                        }
+                    },
+                    {
+                        "name": "callback_account_metas",
+                        "type": {
+                            "vec": {
+                                "defined": {
+                                    "name": "AccountMeta"
+                                }
+                            }
+                        }
+                    },
+                    {
+                        "name": "is_processed",
+                        "type": "bool"
+                    }
+                ]
+            }
+        }
+    ]
+}

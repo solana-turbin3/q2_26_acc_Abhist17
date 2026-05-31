@@ -1,0 +1,5 @@
+# rpc_url = "https://api.devnet.solana.com"
+rpc_url = "http://127.0.0.1:8899"
+# rpc_url = "https://devnet.helius-rpc.com/?api-key=71d05d9f-5d94-4548-9137-c6c3d9f69b3e""
+key_path = "/Users/singupallikartik/.config/solana/id.json"
+min_crank_fee = 1000001
