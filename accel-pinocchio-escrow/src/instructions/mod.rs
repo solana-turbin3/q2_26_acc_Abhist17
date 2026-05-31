@@ -1,0 +1,40 @@
+pub mod make;
+pub mod take;
+pub mod cancel;
+pub mod make2;
+pub mod take2;
+pub mod cancel2;
+
+pub use make::*;
+pub use take::*;
+pub use cancel::*;
+pub use make2::*;
+pub use take2::*;
+pub use cancel2::*;
+
+use pinocchio::error::ProgramError;
+
+pub enum EscrowInstructions {
+    Make = 0,
+    Take = 1,
+    Cancel = 2,
+    MakeV2 = 3,
+    TakeV2 = 4,
+    CancelV2 = 5,
+}
+
+impl TryFrom<&u8> for EscrowInstructions {
+    type Error = ProgramError;
+
+    fn try_from(value: &u8) -> Result<Self, Self::Error> {
+        match value {
+            0 => Ok(EscrowInstructions::Make),
+            1 => Ok(EscrowInstructions::Take),
+            2 => Ok(EscrowInstructions::Cancel),
+            3 => Ok(EscrowInstructions::MakeV2),
+            4 => Ok(EscrowInstructions::TakeV2),
+            5 => Ok(EscrowInstructions::CancelV2),
+            _ => Err(ProgramError::InvalidInstructionData),
+        }
+    }
+}
