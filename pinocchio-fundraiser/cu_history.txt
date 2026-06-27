@@ -1,0 +1,39 @@
+Raw no optimisation
+=== Compute Unit Summary ===
+  check_contributions/base                     6468 CUs
+  contribute/base                              8255 CUs
+  initialize/base                             24498 CUs
+  refund/base                                  7074 CUs
+
+
+
+removed asserts. 
+=== Compute Unit Summary ===
+  check_contributions/base                     6274 CUs
+  contribute/base                              7856 CUs
+  initialize/base                             24303 CUs
+  refund/base                                  6778 CUs
+  
+
+removed logs.
+  === Compute Unit Summary ===
+  check_contributions/base                     6171 CUs
+  contribute/base                              7849 CUs
+  initialize/base                             24306 CUs
+  refund/base                                  6358 CUs
+  
+
+unsave addtion, optimize refund/ contribute
+  check_contributions/base                     6137 CUs
+  contribute/base                              7800 CUs
+  initialize/base                             24278 CUs
+  refund/base                                  6276 CUs
+
+
+optimize check / initilize remvoe state/error
+  check_contributions/base                     5919 CUs
+  contribute/base                              7794 CUs
+  initialize/base                              8685 CUs
+  refund/base                                  6276 CUs
+
+
